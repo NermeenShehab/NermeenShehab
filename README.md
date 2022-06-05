@@ -1,7 +1,7 @@
 <h1 align="center">Hi 👋, I'm Nermeen Shehab</h1>
 <h3 align="center">Full Stack Web Developer</h3>
 
-<h3 align="center">A Trainee at Information Technology Instituite (ITI) studying Open Source Application Development</h3>
+<h3 align="center">A Trainee at Information Technology Institute (ITI) studying Open Source Application Development</h3>
 
 - 📫 How to reach me **nermeenshehab2@gmail.com**
 
