@@ -1,9 +1,9 @@
 <h1 align="center">Hi 👋, I'm Nermeen Shehab</h1>
-<h3 align="center">Full Stack Web Developer</h3>
+<h3 align="center">Senior Front-End Developer</h3>
 
-<h3 align="center">A Trainee at Information Technology Institute (ITI) studying Open Source Application Development</h3>
+<h3 align="center">Passionate about building responsive, user-friendly web applications with modern technologies.</h3>
 
-- 📫 How to reach me **nermeenshehab2@gmail.com**
+- 📫 How to reach me: <a href="mailto:nermeenshehab2@gmail.com"><b>nermeenshehab2@gmail.com</b></a>
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
