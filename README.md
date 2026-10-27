@@ -118,7 +118,7 @@ pie showData
 </p>
 
 <p align="center">
-  <img width="100%" src="https://github-readme-activity-graph.vercel.app/graph?username=NermeenShehab&theme=github-compact&hide_border=true&area=true" alt="Contribution graph" />
+  <img width="100%" src="https://ghchart.rshah.org/2563EB/NermeenShehab" alt="Contribution graph" />
 </p>
 
 > 💡 Most of my work lives in **private company repositories**, so the public stats above show only part of it.
