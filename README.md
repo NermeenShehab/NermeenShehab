@@ -1,6 +1,6 @@
 <h1 align="center">Hi 👋, I'm Nermeen Shehab</h1>
-<h3 align="center">Senior Frontend Developer & QA Test Manager</h3>
-<p align="center">5+ years building production-grade web apps · Currently at <b>Dubai Link Group</b></p>
+<h3 align="center">Senior Frontend Developer & QA Lead</h3>
+<p align="center">4+ years building production-grade web apps · Currently at <b>Dubai Link Group</b></p>
 
 <p align="center">
   <a href="https://www.linkedin.com/in/NermeenShehab"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
@@ -13,16 +13,16 @@
 
 ## 👩‍💻 About Me
 
-Senior Frontend Developer & QA Test Manager with 5+ years of experience architecting and delivering a wide range of high-traffic, production-grade web applications across two employers and freelance client work, spanning travel-tech, healthcare, real estate, and e-commerce domains — consistently focused on high code quality, strong performance, and scalable architecture. Currently leading frontend engineering and QA at Dubai Link Group, across its B2C travel app, B2B agent portal, admin/QA dashboard, and corporate web presence, serving the MENA market.
+Senior Frontend Developer & QA Lead with 4+ years of experience architecting and delivering a wide range of high-traffic, production-grade web applications across four employers and freelance client work, spanning travel-tech, healthcare, real estate, and e-commerce domains — consistently focused on high code quality, strong performance, and scalable architecture. Currently leading frontend engineering and QA at Dubai Link Group, across its B2C travel app, B2B agent portal, admin/QA dashboard, and corporate web presence, serving the MENA market.
 
-Expert in React, Next.js, and TypeScript, with a strong track record in bilingual (English/Arabic) RTL applications, component design systems, and Jenkins/Kubernetes-backed deployment pipelines. Recently expanded into cross-service authentication engineering, shipping a single sign-on integration across an internal AI-assisted booking assistant (Claude + MCP), an operations dashboard, and the company admin portal. Proven team leader who has managed, mentored, and set technical standards for cross-functional development teams. Reported results on the BLACKROCK website: 27% SEO improvement, 24% performance enhancement, and 17% accessibility improvement.
+Expert in React, Next.js, and TypeScript, with a strong track record in bilingual (English/Arabic) RTL applications, component design systems, and Jenkins/Kubernetes-backed deployment pipelines. Recently expanded into cross-service authentication engineering, designing and implementing a shared single sign-on integration across two internal applications — an AI-assisted booking assistant (Claude + MCP) and an operations dashboard. Proven team leader who has managed, mentored, and set technical standards for cross-functional development teams. Reported results on the BLACKROCK website: 27% SEO improvement, 24% performance enhancement, and 17% accessibility improvement.
 
 ---
 
 ## 📊 Career at a Glance
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Experience-5%2B%20years-1E3A8A?style=flat-square" alt="Experience: 5+ years" />
+  <img src="https://img.shields.io/badge/Experience-4%2B%20years-1E3A8A?style=flat-square" alt="Experience: 4+ years" />
   <img src="https://img.shields.io/badge/Production%20projects-24%2B-1E3A8A?style=flat-square" alt="Production projects: 24+" />
   <img src="https://img.shields.io/badge/Tracked%20commits-624%2B-1E3A8A?style=flat-square" alt="Tracked commits: 624+" />
   <img src="https://img.shields.io/badge/Companies-4-1E3A8A?style=flat-square" alt="Companies: 4" />
@@ -35,13 +35,15 @@ gantt
     dateFormat YYYY-MM
     axisFormat %Y
     section Dubai Link Group
-    Senior Frontend Developer & QA Test Manager :active, 2025-05, 2026-10
-    section Black Rock Technologies
-    Senior Front-End Developer :2024-02, 2025-05
-    section Soft Zone
-    Front-End Developer :2023-10, 2024-04
+    Senior Frontend Developer & QA Lead :active, 2025-05, 2026-10
+    section Blackrock Technologies
+    Senior Frontend Developer :2024-02, 2026-05
+    section SoftZone
+    Frontend Developer :2023-10, 2024-04
     section Code Clouders
-    Front-End Developer :2022-06, 2023-10
+    Frontend Developer :2022-06, 2023-10
+    section Freelance
+    Freelance Frontend Developer :2022-06, 2026-10
 ```
 
 ### 🧩 Where My Commits Went (624 commits, 50 repos)
@@ -56,12 +58,12 @@ pie showData
 
 ### 📈 Commit Activity per Quarter
 
-```mermaid
-xychart-beta
-    x-axis ["2021 Q2", "2021 Q3", "2021 Q4", "2022 Q1", "2022 Q2", "2022 Q3", "2022 Q4", "2023 Q1", "2023 Q2", "2023 Q3", "2023 Q4", "2024 Q1", "2024 Q2", "2024 Q3", "2024 Q4", "2025 Q1", "2025 Q2", "2025 Q3", "2025 Q4", "2026 Q1", "2026 Q2", "2026 Q3", "2026 Q4"]
-    y-axis "Commits" 0 --> 184
-    bar [12, 16, 0, 21, 28, 0, 0, 5, 5, 0, 0, 5, 0, 15, 2, 3, 2, 22, 89, 55, 153, 167, 24]
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/commit-activity-dark.svg" />
+  <img src="./assets/commit-activity-light.svg" alt="Commit activity per quarter, Q2 2021 to Q4 2026: 868 commits, plus 822 private-repository contributions that GitHub reports without a type" width="100%" />
+</picture>
+
+<sub>Data: GitHub contribution activity for @NermeenShehab (commits, including private repositories), Jun 2021 – Nov 9, 2026. Regenerate with <code>scripts/commit_activity.py</code>.</sub>
 
 > 💡 Most of my work is in **private company repositories**. These charts are built from my own commit history across them.
 
@@ -70,27 +72,32 @@ xychart-beta
 ## 💼 Experience
 
 <details open>
-<summary><b>Senior Frontend Developer & QA Test Manager</b> · Dubai Link Group · <i>May 2025 – Present</i></summary>
+<summary><b>Senior Frontend Developer & QA Lead</b> · Dubai Link Group · <i>May 2025 – Present</i></summary>
 
-- **Managed a development team** — assigned tasks, conducted code reviews, mentored junior/mid developers, and maintained code quality across travel brand platforms and enterprise tools
+- **Managed and mentored a team of 4–5 engineers** — assigned tasks, conducted code reviews, mentored junior/mid developers, and maintained code quality across travel brand platforms and enterprise tools
 - Architected and shipped **Tripstick B2C App** using Next.js 16 and React 19.2 with MUI v7 and Tailwind CSS v4, adopting React 19 concurrent features and the latest MUI component API
-- Built **WebAdmin (Portal Dashboard)** — Next.js 15 admin dashboard with Elasticsearch, Chart.js/Recharts analytics, and NextAuth multi-role access giving ops teams real-time visibility into bookings and client finances
+- Built **WebAdmin (Portal Dashboard)** — Next.js 15 travel operations platform covering the booking lifecycle, agency and user administration, role-based permissions, financial operations, invoice reconciliation, supplier and payment integrations, and operational monitoring, with Chart.js/Recharts analytics dashboards and NextAuth multi-role access
+- Embedded **Elasticsearch dashboards** in WebAdmin via iframes, using a dedicated read-only user and background authentication so users never see a separate login screen
+- Implemented **real-time notifications with WebSockets** and analytics dashboards for operational insights and booking performance
 - Developed **GTE B2B** — corporate booking platform with NextAuth JWT sessions, RBAC (Admin/Agent/Finance), Google Maps hotel display, and finance reconciliation tools
 - Delivered **Dubai Link Group Site** with Next.js 16, Framer Motion animations, Google Maps, and multi-carousel layout
-- Collaborated on a **single sign-on (SSO) integration** across two internal apps — an AI-assisted hotel-booking assistant with a booking-analytics panel (Next.js/FastAPI/MCP, powered by Claude), and an operations hotel-content mapping dashboard (Flask) — modifying both apps to support a shared token-handoff login flow and session-cookie proxy logic; removed SSO tokens from URL query parameters post-login to close a token-leakage exposure
+- Designed and implemented a shared **single sign-on (SSO) integration** across two internal apps — an AI-assisted hotel-booking assistant with a booking-analytics panel (Next.js/FastAPI/MCP, powered by Claude), and an operations hotel-content mapping dashboard (Flask) — modifying both apps to support a shared token-handoff login flow and session-cookie proxy logic; removed SSO tokens from URL query parameters post-login to close a token-leakage exposure
 - Own frontend architecture, reusable component systems, and folder structures; establish coding standards, performance/accessibility/security best practices, and CI/CD quality gates
-- Define and oversee automated and manual testing strategies, bug tracking, and QA documentation; conduct code reviews and mentor frontend engineers; plan and track work in Jira
+- Built an **MCP server** on the Claude API that lets technical and non-technical users test API endpoints, generate reusable test scripts and scenarios from natural-language requests, and query booking analytics without code changes
+- Define and oversee automated and manual testing strategies, API and regression testing, security testing (authentication, token lifecycle, tenant isolation, RBAC), bug tracking, release validation, and QA documentation; conduct code reviews and mentor frontend engineers; plan and track work in Jira
 - Maintained full EN/AR bilingual support (next-intl v4) with pixel-accurate RTL layout mirroring across all consumer platforms
-- Implemented multi-stage Docker builds, Next.js standalone output, and Jenkins CI/CD pipelines across the application portfolio; tracked deployment health and performance via Grafana and Kubernetes dashboards
+- Contributed to CI/CD workflows using multi-stage Docker builds, Next.js standalone output, Jenkins, and Kubernetes, with Grafana monitoring of deployment health and performance
 - Enforced TypeScript strict mode and ESLint (core-web-vitals + unused-imports) standards across all codebases
 
 </details>
 
 <details>
-<summary><b>Senior Front-End Developer</b> · Black Rock Technologies · <i>Feb 2024 – May 2025</i></summary>
+<summary><b>Senior Frontend Developer</b> · Blackrock Technologies · <i>Feb 2024 – May 2026</i></summary>
+
+<sub>Part-time Feb 2024 – May 2024 · Full-time May 2024 – May 2025 · Part-time May 2025 – May 2026</sub>
 
 - **Managed a development team** — assigned tasks, conducted code reviews, mentored junior/mid developers, and maintained code quality across travel brand platforms and enterprise tools
-- Architected **4 Next.js 15 / React 19 B2C booking platforms** (Fazaa, Al Muayed, IVA Holidays, Smile Go) with consistent Redux Toolkit slice architecture for auth, multi-modal search (hotels/cars/flights/activities/transfers), localisation, and notifications; scaffolded a fifth (Key Bookings) as an additional brand entry point
+- **Architected four B2C platforms on a shared frontend architecture and scaffolded Key Bookings as a fifth brand** — Fazaa, Al Muayed, IVA Holidays, and Smile Go, built with Next.js 15 / React 19 and a consistent Redux Toolkit slice architecture for auth, multi-modal search (hotels/cars/flights/activities/transfers), localisation, and notifications
 - Developed **BLACKROCK Website** reporting: **27% SEO improvement** (100% of targets), **24% performance enhancement** (98% score), **17% accessibility improvement** (full compliance), and **100% boost in coding best practices**
 - Built **Corporate Booking Tool (CBT)** — React 18 enterprise platform with approval workflows, billing history, and a genuine Storybook component library (auto-docs, RTL addon, real interaction testing)
 - Developed **STC Platform** — B2B travel booking (flights/hotels) with RBAC, real-time availability, secure payments, and **Jest unit testing** (React, Redux, TypeScript, Storybook)
@@ -102,23 +109,33 @@ xychart-beta
 </details>
 
 <details>
-<summary><b>Front-End Developer</b> · Soft Zone · <i>Oct 2023 – Apr 2024</i></summary>
+<summary><b>Frontend Developer</b> · SoftZone · <i>Oct 2023 – Apr 2024</i></summary>
 
 - Developed **Ecomaster** — digital multi-store marketplace connecting restaurant owners with wholesale suppliers (Angular, Angular Material, TypeScript, ngx-translate)
 - Built **Darna** — luxury fashion e-commerce platform with secure payments, delivery management, and product filtering (Angular, Angular Material, TypeScript)
-- Collaborated on Angular platforms **Maeyar** (e-learning system for universities/institutions), **RoomHour** (hourly hotel-reservation website & dashboard), and **AFAAQPro** (smart access-solutions website & dashboard for hospitality)
+- Contributed to the development of **Maeyar** (e-learning system for universities/institutions), **RoomHour** (hourly hotel-reservation website & dashboard), and **AFAAQPro** (smart access-solutions website & dashboard for hospitality)
 - Authored a **Gulp-based build pipeline** shared across all Angular platforms — minifying JS/CSS/HTML and optimizing images to reduce bundle size and improve load performance
 
 </details>
 
 <details>
-<summary><b>Front-End Developer</b> · Code Clouders · <i>Jun 2022 – Oct 2023</i></summary>
+<summary><b>Frontend Developer</b> · Code Clouders · <i>Jun 2022 – Oct 2023</i></summary>
 
 - Built **Asser Map** — real-time geographic information exchange platform for geo-data integrated with electronic transaction systems (React, Redux Toolkit, Google Maps, i18next)
 - Developed **Mnhga** — centralised medical platform for patient records, appointments, secure communications, and health tracking with Chart.js analytics and Storybook documentation
 - Built **iNUPCO UI** — Storybook-documented React/TypeScript component design system powering NUPCO's medical equipment procurement, delivery, and client management platform, published as versioned internal packages with RTL Storybook addon support and Craco build tooling
 - Delivered **QPortal** — website-building platform with OctoberCMS (Laravel) for non-technical users via drag-and-drop design tools
 - Authored Storybook component documentation and configured ESLint/TypeScript standards across all projects
+
+</details>
+
+<details>
+<summary><b>Freelance Frontend Developer</b> · Self-employed · <i>Jun 2022 – Present</i></summary>
+
+- Delivered client websites and dashboards end to end, from UI design to deployment
+- Built **ElSamady** — corporate catalog site with a self-managed admin CMS and SEO audit
+- Built the **SW Egypt Admin Dashboard** — ride-hailing operations dashboard — and **Sodasyat**, a map-driven real estate platform
+- Built animated studio and landing websites for **Software House Egypt** (Next.js, Framer Motion) and **EngLabs** (Tailwind CSS, Firebase)
 
 </details>
 
@@ -179,10 +196,10 @@ xychart-beta
 | **Auth & Security** | NextAuth · JWT · OAuth 2.0 · Secure cookies · SSO / cross-service auth |
 | **i18n & RTL** | next-intl · i18next · ngx-translate · tailwindcss-rtl |
 | **Maps & Charts** | React Leaflet · Google Maps API · Chart.js · Recharts |
-| **Integrations** | Firebase · Elasticsearch · Axios · Resend · REST APIs · Node.js · Laravel · Django · Python (FastAPI, Flask) |
-| **AI / Emerging Tech** | Anthropic Claude API (exposure) · Model Context Protocol / MCP (exposure) |
+| **Integrations** | Firebase · Elasticsearch · Axios · Resend · WebSockets · REST APIs · Node.js · Laravel · Django · Python (FastAPI, Flask) |
+| **AI / Emerging Tech** | Anthropic Claude API · Model Context Protocol (MCP) |
 | **DevOps & Tools** | Docker · Jenkins CI/CD · Kubernetes · AWS EC2 · Git/GitHub · ESLint · Storybook · SonarQube · Grafana · Vercel/Netlify · Postman · Gulp |
-| **Testing** | Jest · Storybook Interaction Testing · ESLint static analysis |
+| **Testing** | Playwright · Cypress · Jest · Postman (API testing) · Storybook Interaction Testing · ESLint static analysis |
 | **Forms** | Formik · Yup · React Hook Form · Zod |
 | **Databases** | MySQL · PostgreSQL · MongoDB · MariaDB · SQLite |
 
@@ -209,4 +226,4 @@ xychart-beta
 
 <p align="center"><i>📫 Open to Senior Frontend / Frontend Lead opportunities. Let's connect!</i></p>
 
-<sub>Last updated 2026-10-27</sub>
+<sub>Last updated 2026-11-09</sub>
