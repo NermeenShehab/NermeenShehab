@@ -87,8 +87,6 @@ Most of my professional work lives in private company repositories. Public case 
   <img src="./assets/commit-activity-light.svg" alt="Heatmap of commits per quarter, 2021 to November 2026: 868 commits in total" width="100%" />
 </picture>
 
-<sub>Data: GitHub contribution activity for @NermeenShehab (commits, including private repositories), Jun 2021 – Nov 9, 2026. Regenerate with <code>scripts/commit_activity.py</code>.</sub>
-
 ---
 
 ## Education
@@ -97,4 +95,4 @@ Most of my professional work lives in private company repositories. Public case 
 - **Intensive Code Camp**, Full Stack Web Development (PHP) — Information Technology Institute (ITI), Mansoura · 2021
 - **Bachelor of Science in Special Chemistry** — Mansoura University · 2016 – 2020
 
-<p align="center"><sub>Open to Senior Frontend and Frontend Lead roles · Mansoura, Egypt</sub></p>
+<p align="center"><sub>Open to Senior Frontend and Frontend Lead roles</sub></p>
