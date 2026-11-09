@@ -1,4 +1,4 @@
-"""Generate GitHub-style 'Commit activity per quarter' SVGs (light + dark) for a profile README.
+"""Generate a GitHub-contribution-graph-style 'Commit activity per quarter' heatmap (light + dark SVG).
 
 Data: monthly counts taken from GitHub's own contribution activity for @NermeenShehab
   - commits  = "Created N commits in M repositories" (commits GitHub attributes to the account,
@@ -17,45 +17,43 @@ from xml.sax.saxutils import escape
 
 SRC, OUT = sys.argv[1], sys.argv[2]
 AS_OF = "Nov 9, 2026"
+LEVELS = [0, 1, 25, 75, 150]          # commits per quarter -> colour level 0..4
 
-THEMES = {
-    "light": dict(text="#1f2328", muted="#59636e", grid="#d1d9e0", commit="#2da44e", private="#aceebb",
-                  partial="#2da44e"),
-    "dark": dict(text="#f0f6fc", muted="#9198a1", grid="#3d444d", commit="#3fb950", private="#196c2e",
-                 partial="#3fb950"),
+THEMES = {  # GitHub's own contribution-graph palettes
+    "light": dict(text="#1f2328", muted="#59636e", border="#d1d9e0",
+                  lv=["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"],
+                  on=["#59636e", "#1f2328", "#1f2328", "#ffffff", "#ffffff"]),
+    "dark": dict(text="#f0f6fc", muted="#9198a1", border="#3d444d",
+                 lv=["#151b23", "#033a16", "#196c2e", "#2ea043", "#56d364"],
+                 on=["#9198a1", "#f0f6fc", "#f0f6fc", "#ffffff", "#0d1117"]),
 }
 
-# ---- aggregate months -> quarters -------------------------------------------------------
+# ---- aggregate months -> quarters ----------------------------------------------------------
 quarters = OrderedDict()
 with open(SRC) as f:
     for ym, c, p in csv.reader(f):
         y, m = ym.split("-")
-        key = (int(y), (int(m) - 1) // 3 + 1)
-        q = quarters.setdefault(key, [0, 0])
+        q = quarters.setdefault((int(y), (int(m) - 1) // 3 + 1), [0, 0])
         q[0] += int(c)
         q[1] += int(p)
 
-keys = sorted(quarters)
-first = next(k for k in keys if sum(quarters[k]))          # start at first quarter with activity
-keys = [k for k in keys if k >= first]
-data = [(y, q, *quarters[(y, q)]) for y, q in keys]
-total_c = sum(d[2] for d in data)
-total_p = sum(d[3] for d in data)
-peak = max(d[2] + d[3] for d in data)
-step = 100 if peak > 200 else 50
-ymax = ((peak // step) + 1) * step
-
-# ---- layout -------------------------------------------------------------------------------
-W, H = 880, 330
-L, R, T, B = 48, 16, 74, 62                                   # plot margins
-pw, ph = W - L - R, H - T - B
-n = len(data)
-slot = pw / n
-bw = slot * 0.62
+years = sorted({y for y, _ in quarters})
+last = max(quarters)                                   # the (partial) current quarter
+total_c = sum(v[0] for v in quarters.values())
+total_p = sum(v[1] for v in quarters.values())
 
 
-def ypos(v):
-    return T + ph - v / ymax * ph
+def level(c):
+    return max(i for i, t in enumerate(LEVELS) if c >= t)
+
+
+# ---- layout ---------------------------------------------------------------------------------
+W = 880
+L, TOP = 64, 92                 # left label column, top of grid
+GAP, CH = 6, 40                 # gap between cells, cell height
+TOTW = 96                       # yearly total column
+CW = (W - L - 16 - TOTW - GAP * 4) / 4
+H = TOP + len(years) * (CH + GAP) + 44
 
 
 def svg(theme):
@@ -63,66 +61,70 @@ def svg(theme):
     o = []
     a = o.append
     title = "Commit activity per quarter"
-    desc = (f"Quarterly commits for GitHub user NermeenShehab from Q{data[0][1]} {data[0][0]} to "
-            f"Q{data[-1][1]} {data[-1][0]} (partial, as of {AS_OF}): {total_c} commits. "
-            f"Lighter segments show {total_p} additional contributions in private repositories that GitHub "
-            f"reports without a type. Source: GitHub contribution activity.")
+    desc = (f"Heatmap of quarterly commits for GitHub user NermeenShehab, {years[0]} to {years[-1]} "
+            f"(as of {AS_OF}): {total_c} commits in total. Cells also note {total_p} contributions in private "
+            f"repositories that GitHub reports without a type; these are not counted as commits. "
+            f"Source: GitHub contribution activity.")
     a(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="100%" role="img" '
       f'aria-labelledby="t d" font-family="-apple-system,BlinkMacSystemFont,\'Segoe UI\',\'Noto Sans\',Helvetica,Arial,sans-serif">')
     a(f'<title id="t">{title}</title><desc id="d">{escape(desc)}</desc>')
-    # header
-    a(f'<text x="{L}" y="26" font-size="15" font-weight="600" fill="{t["text"]}">{title}</text>')
-    a(f'<text x="{L}" y="45" font-size="11.5" fill="{t["muted"]}">{total_c} commits · '
-      f'Q{data[0][1]} {data[0][0]} – Q{data[-1][1]} {data[-1][0]} (to {AS_OF}) · Source: GitHub contribution activity</text>')
-    # legend
-    lx = W - R - 330
-    a(f'<rect x="{lx}" y="17" width="10" height="10" rx="2" fill="{t["commit"]}"/>'
-      f'<text x="{lx + 15}" y="26" font-size="11.5" fill="{t["muted"]}">Commits</text>')
-    a(f'<rect x="{lx + 80}" y="17" width="10" height="10" rx="2" fill="{t["private"]}"/>'
-      f'<text x="{lx + 95}" y="26" font-size="11.5" fill="{t["muted"]}">Private-repo contributions (type not reported)</text>')
-    # grid + y axis
-    for v in range(0, ymax + 1, step):
-        y = ypos(v)
-        a(f'<line x1="{L}" x2="{W - R}" y1="{y:.1f}" y2="{y:.1f}" stroke="{t["grid"]}" stroke-width="1"'
-          f'{" stroke-dasharray=\"3 3\"" if v else ""}/>')
-        a(f'<text x="{L - 8}" y="{y + 4:.1f}" font-size="10.5" text-anchor="end" fill="{t["muted"]}">{v}</text>')
-    # bars
-    year_span = OrderedDict()
-    for i, (yr, q, c, p) in enumerate(data):
-        cx = L + slot * i + slot / 2
-        x = cx - bw / 2
-        partial = (yr, q) == (data[-1][0], data[-1][1])
-        tip = f"Q{q} {yr}: {c} commit{'s' if c != 1 else ''}"
-        if p:
-            tip += f" + {p} private-repo contributions (type not reported)"
-        if partial:
-            tip += f" (partial quarter, to {AS_OF})"
-        a(f'<g><title>{escape(tip)}</title>')
-        yc = ypos(c)
-        if c:
-            a(f'<rect x="{x:.1f}" y="{yc:.1f}" width="{bw:.1f}" height="{T + ph - yc:.1f}" rx="2" '
-              f'fill="{t["commit"]}"/>')
-        top = yc
-        if p:
-            yp = ypos(c + p)
-            a(f'<rect x="{x:.1f}" y="{yp:.1f}" width="{bw:.1f}" height="{yc - yp:.1f}" rx="2" fill="{t["private"]}"/>')
-            top = yp
-        if c:
-            a(f'<text x="{cx:.1f}" y="{top - 5:.1f}" font-size="10.5" font-weight="600" text-anchor="middle" '
-              f'fill="{t["text"]}">{c}{"*" if partial else ""}</text>')
-
-        a('</g>')
-        a(f'<text x="{cx:.1f}" y="{T + ph + 16}" font-size="10" text-anchor="middle" fill="{t["muted"]}">Q{q}</text>')
-        year_span.setdefault(yr, []).append(cx)
-    # year labels + separators
-    for j, (yr, xs) in enumerate(year_span.items()):
-        a(f'<text x="{(xs[0] + xs[-1]) / 2:.1f}" y="{T + ph + 34}" font-size="11.5" font-weight="600" '
-          f'text-anchor="middle" fill="{t["text"]}">{yr}</text>')
-        if j:
-            sx = xs[0] - slot / 2
-            a(f'<line x1="{sx:.1f}" x2="{sx:.1f}" y1="{T + ph + 4}" y2="{T + ph + 38}" stroke="{t["grid"]}"/>')
-    a(f'<text x="{W - R}" y="{H - 8}" font-size="10" text-anchor="end" fill="{t["muted"]}">'
-      f'* Partial quarter · Each commit counted once · Private-repo contributions are not counted as commits</text>')
+    a(f'<text x="{L}" y="28" font-size="15" font-weight="600" fill="{t["text"]}">{total_c} commits '
+      f'<tspan font-weight="400" fill="{t["muted"]}">from {years[0]} to {AS_OF}</tspan></text>')
+    a(f'<text x="{L}" y="48" font-size="11.5" fill="{t["muted"]}">Source: GitHub contribution activity · '
+      f'each commit counted once · includes private repositories</text>')
+    # column headers
+    for qi in range(4):
+        cx = L + qi * (CW + GAP) + CW / 2
+        a(f'<text x="{cx:.1f}" y="{TOP - 10}" font-size="11.5" text-anchor="middle" fill="{t["muted"]}">Q{qi + 1}</text>')
+    tx = L + 4 * (CW + GAP) + TOTW / 2
+    a(f'<text x="{tx:.1f}" y="{TOP - 10}" font-size="11.5" text-anchor="middle" fill="{t["muted"]}">Total</text>')
+    # rows
+    for ri, yr in enumerate(years):
+        y0 = TOP + ri * (CH + GAP)
+        a(f'<text x="{L - 12}" y="{y0 + CH / 2 + 4:.1f}" font-size="12" font-weight="600" text-anchor="end" '
+          f'fill="{t["text"]}">{yr}</text>')
+        yc = 0
+        for qi in range(4):
+            key = (yr, qi + 1)
+            x0 = L + qi * (CW + GAP)
+            if key not in quarters:                       # future quarter: outline only
+                a(f'<rect x="{x0:.1f}" y="{y0}" width="{CW:.1f}" height="{CH}" rx="6" fill="none" '
+                  f'stroke="{t["border"]}" stroke-dasharray="3 3"/>')
+                continue
+            c, p = quarters[key]
+            yc += c
+            lv = level(c)
+            partial = key == last
+            tip = f"Q{qi + 1} {yr}: {c} commit{'s' if c != 1 else ''}"
+            if p:
+                tip += f"; plus {p} private-repo contributions (type not reported)"
+            if partial:
+                tip += f" (partial quarter, to {AS_OF})"
+            a(f'<g><title>{escape(tip)}</title>')
+            a(f'<rect x="{x0:.1f}" y="{y0}" width="{CW:.1f}" height="{CH}" rx="6" fill="{t["lv"][lv]}" '
+              f'stroke="{t["border"]}" stroke-opacity="0.35"/>')
+            label = f"{c}{'*' if partial else ''}"
+            if p:
+                a(f'<text x="{x0 + 14:.1f}" y="{y0 + CH / 2 + 5:.1f}" font-size="14" font-weight="600" '
+                  f'fill="{t["on"][lv]}">{label}</text>')
+                a(f'<text x="{x0 + CW - 12:.1f}" y="{y0 + CH / 2 + 4:.1f}" font-size="10.5" text-anchor="end" '
+                  f'fill="{t["on"][lv]}" fill-opacity="0.85">+{p} private</text>')
+            else:
+                a(f'<text x="{x0 + CW / 2:.1f}" y="{y0 + CH / 2 + 5:.1f}" font-size="14" font-weight="600" '
+                  f'text-anchor="middle" fill="{t["on"][lv]}">{label}</text>')
+            a('</g>')
+        a(f'<text x="{tx:.1f}" y="{y0 + CH / 2 + 5:.1f}" font-size="13" font-weight="600" text-anchor="middle" '
+          f'fill="{t["text"]}">{yc}</text>')
+    # legend + footnote
+    ly = H - 22
+    a(f'<text x="{L}" y="{ly + 4}" font-size="10.5" fill="{t["muted"]}">* Partial quarter · '
+      f'"+N private" = private-repo contributions GitHub reports without a type (not counted as commits)</text>')
+    lx = W - 16 - 5 * 15 - 70
+    a(f'<text x="{lx}" y="{ly + 4}" font-size="10.5" fill="{t["muted"]}">Less</text>')
+    for i, col in enumerate(t["lv"]):
+        a(f'<rect x="{lx + 30 + i * 15}" y="{ly - 6}" width="11" height="11" rx="2" fill="{col}" '
+          f'stroke="{t["border"]}" stroke-opacity="0.35"/>')
+    a(f'<text x="{lx + 30 + 5 * 15 + 4}" y="{ly + 4}" font-size="10.5" fill="{t["muted"]}">More</text>')
     a('</svg>')
     return "".join(o)
 
@@ -130,5 +132,5 @@ def svg(theme):
 for th in THEMES:
     with open(f"{OUT}/commit-activity-{th}.svg", "w") as f:
         f.write(svg(th))
-print("quarters:", [(f"{y}Q{q}", c, p) for y, q, c, p in data])
-print("total commits:", total_c, "private contributions:", total_p)
+print("years:", years, "total commits:", total_c, "private contributions:", total_p)
+print({f"{y}": [quarters.get((y, q), ['-'])[0] for q in range(1, 5)] for y in years})
